@@ -1,78 +1,168 @@
-# ⚡ CodeBulb - AI Pilot for VS Code
+<div align="center">
+  <img src="media/icon.png" width="128" alt="CodeBulb Logo" />
 
-> **Slogan:** *Bhai Code Karle* (Brother, let's code!)
+  <h1>⚡ CodeBulb — AI Pilot for VS Code</h1>
+  <h3>The <i>No-Nonsense</i> AI Coding Assistant</h3>
 
-CodeBulb is a powerful VS Code extension that turns your editor into an AI-powered coding assistant. It features a **Dual Engine** architecture, allowing you to switch between **Google Gemini 2.5** and **DeepSeek V3** (via OpenRouter) seamlessly.
+  <p>
+    <b>Chat, refactor, fix bugs, and build websites — without leaving your editor.</b>
+  </p>
 
-## 🎥 Demo
-See CodeBulb in action:
+  <p><b>Slogan:</b> <i>Bhai Code Karle</i> (Brother, let's code!)</p>
 
-[![Watch on YouTube](https://img.shields.io/badge/Watch_Demo-YouTube-red?style=for-the-badge&logo=youtube)]
-(https://www.youtube.com/watch?v=phKzqYXWrOI)
-
-*(Click the button above to watch the full tutorial)*
+  <a href="https://marketplace.visualstudio.com/items?itemName=KaranPratapio.codebulb">
+    <img src="https://img.shields.io/visual-studio-marketplace/v/KaranPratapio.codebulb?style=for-the-badge&logo=visual-studio-code&color=blue" />
+  </a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=KaranPratapio.codebulb">
+    <img src="https://img.shields.io/visual-studio-marketplace/i/KaranPratapio.codebulb?style=for-the-badge&logo=visual-studio-code&color=orange" />
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/github/license/KaraNxKP007/codebulb?style=for-the-badge&color=green" />
+  </a>
+</div>
 
 ---
 
-## 🚀 Features
+## 🎥 Demo — See CodeBulb in Action
 
-### 1. 💬 Chat Assistant
-Ask coding doubts directly in the sidebar. CodeBulb provides concise, code-focused answers.
-* **Dual Mode:** Switch between Gemini (Free) and DeepSeek (No Rate Limits) instantly.
-* **Context Aware:** Knows it's a coding assistant and refuses non-coding topics.
+CodeBulb isn't just another chat bot.  
+It **plans, builds, fixes, and explains code end-to-end**.
 
-### 2. 🔨 Website Builder
-Describe a website (e.g., *"Create a portfolio with a dark theme and contact form"*), and CodeBulb will:
-* Create the project folder.
-* Generate `index.html`, `style.css`, and `script.js`.
-* Write professional, modern code automatically.
+[![Watch Demo](https://img.shields.io/badge/Watch_Demo-YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=phKzqYXWrOI)
 
-### 3. 🚑 Code Doctor
-Have a bug? Point CodeBulb to a folder, and it will:
-* Scan your files.
-* Identify errors and security risks.
-* **Fix the code automatically** in place.
+---
+
+## 🚀 Why CodeBulb?
+
+CodeBulb is a **Dual-Engine AI coding assistant** built for developers who want **speed, control, and real productivity** — not fluff.
+
+You can instantly switch between two powerful AI models depending on the task.
+
+### 🔀 Dual-Model Architecture
+
+| Feature | ⚡ Google Gemini 2.5 Flash | 🧠 DeepSeek V3 |
+|------|--------------------------|--------------|
+| Best For | Fast replies, explanations, free usage | Complex logic, architecture, deep reasoning |
+| Cost | **Free** (Google AI Studio) | **Low cost** (via OpenRouter) |
+| Speed | ⚡ Blazing fast | 🧠 Thoughtful & detailed |
+
+---
+
+## ✨ Key Features
+
+### 💬 Smart Chat with Persistent Memory
+- Ask questions, debug errors, refactor code
+- **Chat history is saved automatically**
+- Close VS Code and continue later from the same conversation
+- **Smart code blocks** with one-click copy & insert
+- Terminal-style command recall using `↑ / ↓`
+
+![Chat Interface](media/demo-ui.png)
+
+---
+
+### 🏗️ Project-Aware Website Builder
+Describe your idea, for example:
+
+> "Create a dark-theme portfolio website"
+
+CodeBulb will:
+1. Plan the project structure
+2. Create folders & files (`index.html`, `style.css`, `script.js`)
+3. Write complete, production-ready code automatically
+
+![Website Builder](media/demo-build.png)
+
+---
+
+### 🚑 Code Doctor & Auto-Fixer
+- Scans your workspace
+- Detects bugs, errors, and security risks
+- **Fixes code automatically in place**
+
+---
+
+### 📝 Git Commit Companion
+- Click **Commit** in the action bar
+- CodeBulb analyzes `git diff`
+- Generates clean, professional commit messages
 
 ---
 
 ## 🛠️ Installation
 
-### Option 1: Install via VSIX (Manual)
-1.  Download the latest `.vsix` file from the [Releases](https://github.com/KaranNxKP007/codebulb/releases) page.
-2.  Open VS Code.
-3.  Go to **Extensions** > **... (Menu)** > **Install from VSIX**.
-4.  Select the downloaded file.
+### Option 1: VS Code Marketplace (Recommended)
+1. Open VS Code  
+2. Press `Ctrl + P`  
+3. Run:
+```bash
+   ext install KaranPratapio.codebulb
+```
+   Or search **CodeBulb** in Extensions
 
-### Option 2: Run from Source
-1.  Clone the repository:
-    ```bash
-    git clone [https://github.com/KaraNxKP007/codebulb.git](https://github.com/KaraNxKP007/codebulb.git)
-    ```
-2.  Install dependencies:
-    ```bash
-    cd codebulb
-    npm install
-    ```
-3.  Press **F5** to launch the Extension Debugger.
+### Option 2: Install via VSIX
+1. Download the latest `.vsix` from [GitHub Releases](https://github.com/KaraNxKP007/codebulb/releases)
+2. VS Code → Extensions → **...** → **Install from VSIX**
+
+### Option 3: Run from Source
+```bash
+git clone https://github.com/KaraNxKP007/codebulb.git
+cd codebulb
+npm install
+```
+Press **F5** to launch the Extension Development Host.
 
 ---
 
 ## 🔑 Setup & Privacy
 
-**Your API Keys are Safe.**
-CodeBulb does **not** store your API keys in the cloud. They are saved locally on your machine using VS Code's secure `SecretStorage`.
+🔐 **Your API keys never leave your machine.** CodeBulb stores keys securely using VS Code SecretStorage. No cloud storage. No tracking.
 
-1.  Click the **CodeBulb Icon** in the Activity Bar.
-2.  Paste your **Gemini API Key** (Get it from [Google AI Studio](https://aistudio.google.com/)).
-3.  (Optional) Paste your **DeepSeek/OpenRouter Key** (Get it from [OpenRouter](https://openrouter.ai/)).
-4.  Click **Save Keys**.
+### Setup Steps
+1. Click the 💡 **CodeBulb** icon in the Activity Bar
+2. Open the **Welcome Screen**
+3. Enter your API keys:
+   - **Gemini API Key** (Free): [Get it here](https://aistudio.google.com/app/apikey)
+   - **DeepSeek API Key** (OpenRouter): [Get it here](https://openrouter.ai/keys)
+4. Click **Activate** 🚀
+
+---
+
+## ⚙️ Configuration
+
+Customize CodeBulb in VS Code Settings:
+
+- **Persona** Example: "Be concise", "Always use TypeScript", "Explain like I'm 5"
+- **Model Switching** Instantly toggle between Gemini & DeepSeek using the colored header buttons.
 
 ---
 
 ## 🤝 Contributing
 
-Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+Contributions are welcome.
+
+1. Fork the repository
+2. Create your feature branch:
+```bash
+   git checkout -b feature/AmazingFeature
+```
+3. Commit your changes:
+```bash
+   git commit -m "Add AmazingFeature"
+```
+4. Push to GitHub
+5. Open a Pull Request
+
+---
 
 ## 📄 License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+Distributed under the MIT License. See [LICENSE](LICENSE) for details.
+
+---
+
+<div align="center">
+  <b>Made with ❤️ by Karan Pratap</b>
+  <br><br>
+  <i>Bhai Code Karle.</i>
+</div>

@@ -6,6 +6,8 @@ const SidebarProvider = require('./SidebarProvider');
 const { buildWebsite } = require('./agents/WebsiteBuilder');
 const { fixCode } = require('./agents/CodeFixer');
 const { chatWithAI } = require('./agents/ChatAgent');
+const { generateCommitMessage } = require('./agents/CommitAgent');
+const { reviewCode } = require('./agents/ReviewAgent');
 
 function activate(context) {
     // 1. Setup the Sidebar (Chat UI)
@@ -108,6 +110,64 @@ function activate(context) {
     context.subscriptions.push(buildCommand);
     context.subscriptions.push(fixCommand);
     context.subscriptions.push(chatCommand);
+
+
+// ... inside activate() ...
+
+    // 5. Register Commit Generator (Fixed Context)
+    let commitCommand = vscode.commands.registerCommand('codebulb.generateCommit', async (apiKey, provider, instructions) => {
+        const workspaceFolders = vscode.workspace.workspaceFolders;
+        if (!workspaceFolders) {
+            vscode.window.showErrorMessage("❌ No workspace open. Open a folder with Git initialized.");
+            if (sidebarProvider._view) sidebarProvider._view.webview.postMessage({ type: 'addLog', value: '❌ Error: No workspace found.' });
+            return;
+        }
+        
+        if (sidebarProvider._view) sidebarProvider._view.webview.postMessage({ type: 'showLoading' });
+
+        try {
+            const message = await generateCommitMessage(apiKey, workspaceFolders[0].uri.fsPath, provider, instructions);
+            if (sidebarProvider._view) {
+                sidebarProvider._view.webview.postMessage({ 
+                    type: 'addChat', 
+                    value: `**📝 Suggested Commit Message:**\n\n\`\`\`text\n${message}\n\`\`\`` 
+                });
+            }
+        } catch (e) {
+            vscode.window.showErrorMessage(e.message);
+        }
+    });
+
+    // 6. Register Code Reviewer (Fixed Focus Issue)
+    let reviewCommand = vscode.commands.registerCommand('codebulb.reviewCode', async (apiKey, provider, instructions) => {
+        // FIX: If sidebar is focused, 'activeTextEditor' might be null. Check visible editors.
+        let editor = vscode.window.activeTextEditor;
+        if (!editor && vscode.window.visibleTextEditors.length > 0) {
+            editor = vscode.window.visibleTextEditors[0]; // Grab the first visible code file
+        }
+
+        if (!editor) {
+            vscode.window.showWarningMessage("⚠️ Please open a code file to review first.");
+            if (sidebarProvider._view) sidebarProvider._view.webview.postMessage({ type: 'addLog', value: '⚠️ Open a file to review.' });
+            return;
+        }
+
+        const document = editor.document;
+        const text = document.getText();
+
+        if (sidebarProvider._view) sidebarProvider._view.webview.postMessage({ type: 'showLoading' });
+
+        try {
+            const review = await reviewCode(text, apiKey, provider, instructions);
+            if (sidebarProvider._view) {
+                sidebarProvider._view.webview.postMessage({ type: 'addChat', value: `**🧐 Code Review for ${path.basename(document.fileName)}:**\n\n${review}` });
+            }
+        } catch (e) {
+            vscode.window.showErrorMessage(e.message);
+        }
+    });
+    
+    // ...
 }
 
 function deactivate() {}

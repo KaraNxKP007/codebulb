@@ -4,6 +4,14 @@
 
 CodeBulb is a powerful VS Code extension that turns your editor into an AI-powered coding assistant. It features a **Dual Engine** architecture, allowing you to switch between **Google Gemini 2.5** and **DeepSeek V3** (via OpenRouter) seamlessly.
 
+## 🎥 Demo
+See CodeBulb in action:
+
+[![Watch on YouTube](https://img.shields.io/badge/Watch_Demo-YouTube-red?style=for-the-badge&logo=youtube)](YOUR_YOUTUBE_VIDEO_LINK_HERE)
+
+*(Click the button above to watch the full tutorial)*
+
+---
 
 ## 🚀 Features
 
@@ -37,7 +45,7 @@ Have a bug? Point CodeBulb to a folder, and it will:
 ### Option 2: Run from Source
 1.  Clone the repository:
     ```bash
-    git clone (https://github.com/KaraNxKP007/codebulb.git)
+    git clone [https://github.com/KaraNxKP007/codebulb.git](https://github.com/KaraNxKP007/codebulb.git)
     ```
 2.  Install dependencies:
     ```bash

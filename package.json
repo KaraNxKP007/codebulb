@@ -2,7 +2,7 @@
   "name": "codebulb",
   "displayName": "CodeBulb",
   "description": "AI website builder and Code Fixer",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "icon": "media/codebulb-logo.png",
   "publisher": "KaranPratapio",
   "preview": true,
@@ -77,7 +77,7 @@
     "eslint": "^9.39.1"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.24.1",
+    "@google/generative-ai": "^0.21.0",
     "dotenv": "^17.2.3"
   }
 }

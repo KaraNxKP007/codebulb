@@ -9,4 +9,3 @@ vsc-extension-quickstart.md
 **/eslint.config.mjs
 **/.vscode-test.*
 **/*.ts
-node_modules/**

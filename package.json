@@ -3,8 +3,8 @@
   "displayName": "CodeBulb",
   "description": "AI website builder and Code Fixer",
   "version": "0.0.1",
-  "icon": "media/CodeBulb Logo.png",
-  "publisher": "KaranPratap",
+  "icon": "media/codebulb-logo.png",
+  "publisher": "KaranPratapio",
   "preview": true,
   "galleryBanner": {
     "color": "#21214c",

@@ -3,7 +3,13 @@
   "displayName": "CodeBulb",
   "description": "AI website builder and Code Fixer",
   "version": "0.0.1",
+  "icon": "../media/CodeBulb Logo.png",
   "publisher": "KaranPratap",
+  "preview": true,
+  "galleryBanner": {
+    "color": "#21214c",
+    "theme":"dark"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/KaranPratap/codebulb"

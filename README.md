@@ -37,7 +37,7 @@ Have a bug? Point CodeBulb to a folder, and it will:
 ### Option 2: Run from Source
 1.  Clone the repository:
     ```bash
-    git clone [https://github.com/KaraNxKP007/codebulb.git](https://github.com/KaraNxKP007/codebulb.git)
+    git clone (https://github.com/KaraNxKP007/codebulb.git)
     ```
 2.  Install dependencies:
     ```bash

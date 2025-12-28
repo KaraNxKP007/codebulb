@@ -1,5 +1,6 @@
 // @ts-nocheck
 const vscode = require('vscode');
+const path = require('path');
 const SidebarProvider = require('./SidebarProvider');
 
 // Import the FIXED agents (from the previous steps)
@@ -91,7 +92,9 @@ function activate(context) {
     // 4. Register Chat Command (Called by Sidebar)
     let chatCommand = vscode.commands.registerCommand('codebulb.startChat', async (prompt, apiKey, provider) => {
         if (!apiKey) {
-            sidebarProvider._view.webview.postMessage({ type: 'addChat', value: "Please enter an API Key first." });
+            if (sidebarProvider._view) {
+                sidebarProvider._view.webview.postMessage({ type: 'addChat', value: "Please enter an API Key first." });
+            }
             return;
         }
 
@@ -103,27 +106,26 @@ function activate(context) {
                 }
             });
         } catch (e) {
-            sidebarProvider._view.webview.postMessage({ type: 'addChat', value: `Error: ${e.message}` });
+            if (sidebarProvider._view) {
+                sidebarProvider._view.webview.postMessage({ type: 'addChat', value: `Error: ${e.message}` });
+            }
         }
     });
-
-    context.subscriptions.push(buildCommand);
-    context.subscriptions.push(fixCommand);
-    context.subscriptions.push(chatCommand);
-
-
-// ... inside activate() ...
 
     // 5. Register Commit Generator (Fixed Context)
     let commitCommand = vscode.commands.registerCommand('codebulb.generateCommit', async (apiKey, provider, instructions) => {
         const workspaceFolders = vscode.workspace.workspaceFolders;
         if (!workspaceFolders) {
             vscode.window.showErrorMessage("❌ No workspace open. Open a folder with Git initialized.");
-            if (sidebarProvider._view) sidebarProvider._view.webview.postMessage({ type: 'addLog', value: '❌ Error: No workspace found.' });
+            if (sidebarProvider._view) {
+                sidebarProvider._view.webview.postMessage({ type: 'addLog', value: '❌ Error: No workspace found.' });
+            }
             return;
         }
         
-        if (sidebarProvider._view) sidebarProvider._view.webview.postMessage({ type: 'showLoading' });
+        if (sidebarProvider._view) {
+            sidebarProvider._view.webview.postMessage({ type: 'showLoading' });
+        }
 
         try {
             const message = await generateCommitMessage(apiKey, workspaceFolders[0].uri.fsPath, provider, instructions);
@@ -135,6 +137,9 @@ function activate(context) {
             }
         } catch (e) {
             vscode.window.showErrorMessage(e.message);
+            if (sidebarProvider._view) {
+                sidebarProvider._view.webview.postMessage({ type: 'addChat', value: `❌ Error: ${e.message}` });
+            }
         }
     });
 
@@ -148,26 +153,40 @@ function activate(context) {
 
         if (!editor) {
             vscode.window.showWarningMessage("⚠️ Please open a code file to review first.");
-            if (sidebarProvider._view) sidebarProvider._view.webview.postMessage({ type: 'addLog', value: '⚠️ Open a file to review.' });
+            if (sidebarProvider._view) {
+                sidebarProvider._view.webview.postMessage({ type: 'addLog', value: '⚠️ Open a file to review.' });
+            }
             return;
         }
 
         const document = editor.document;
         const text = document.getText();
 
-        if (sidebarProvider._view) sidebarProvider._view.webview.postMessage({ type: 'showLoading' });
+        if (sidebarProvider._view) {
+            sidebarProvider._view.webview.postMessage({ type: 'showLoading' });
+        }
 
         try {
             const review = await reviewCode(text, apiKey, provider, instructions);
             if (sidebarProvider._view) {
-                sidebarProvider._view.webview.postMessage({ type: 'addChat', value: `**🧐 Code Review for ${path.basename(document.fileName)}:**\n\n${review}` });
+                sidebarProvider._view.webview.postMessage({ 
+                    type: 'addChat', 
+                    value: `**🧐 Code Review for ${path.basename(document.fileName)}:**\n\n${review}` 
+                });
             }
         } catch (e) {
             vscode.window.showErrorMessage(e.message);
+            if (sidebarProvider._view) {
+                sidebarProvider._view.webview.postMessage({ type: 'addChat', value: `❌ Error: ${e.message}` });
+            }
         }
     });
-    
-    // ...
+
+    context.subscriptions.push(buildCommand);
+    context.subscriptions.push(fixCommand);
+    context.subscriptions.push(chatCommand);
+    context.subscriptions.push(commitCommand);
+    context.subscriptions.push(reviewCommand);
 }
 
 function deactivate() {}

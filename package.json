@@ -2,7 +2,7 @@
   "name": "codebulb",
   "displayName": "CodeBulb",
   "description": "AI website builder and Code Fixer",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "icon": "media/codebulb-logo.png",
   "publisher": "KaranPratapio",
   "preview": true,

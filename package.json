@@ -1,0 +1,69 @@
+{
+  "name": "codebulb",
+  "displayName": "CodeBulb",
+  "description": "AI website builder and Code Fixer",
+  "version": "0.0.1",
+  "publisher": "KaranPratap",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KaranPratap/codebulb"
+  },
+  "engines": {
+    "vscode": "^1.107.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "CodeBulb",
+      "properties": {
+        "codebulb.apiKey": {
+          "type": "string",
+          "description": "Enter your Gemini API Key here (Bhai ka API Key)."
+        },
+        "codebulb.deepSeekApiKey": {
+        "type": "string",
+        "description": "Enter your DeepSeek API Key here."
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codebulb-view",
+          "title": "CodeBulb",
+          "icon": "$(lightbulb)"
+        }
+      ]
+    },
+"views": {
+    "codebulb-view": [
+      {
+        "type": "webview",
+        "id": "codebulb.chatView",
+        "name": "CodeBulb Chat"
+      }
+    ]
+  }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.107.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.39.1"
+  },
+  "dependencies": {
+    "@google/genai": "^1.34.0",
+    "dotenv": "^17.2.3"
+  }
+}

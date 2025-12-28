@@ -88,7 +88,7 @@ class SidebarProvider {
       <div class="box">
         <label>🤖 Model Provider</label>
         <select id="provider">
-          <option value="gemini">Google Gemini 2.0</option>
+          <option value="gemini">Google Gemini 2.5</option>
           <option value="deepseek">DeepSeek V3 (No Rate Limits!)</option>
         </select>
       </div>

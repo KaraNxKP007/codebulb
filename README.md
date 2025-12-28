@@ -57,7 +57,7 @@ You can instantly switch between two powerful AI models depending on the task.
 - **Smart code blocks** with one-click copy & insert
 - Terminal-style command recall using `↑ / ↓`
 
-![Chat Interface](media/demo-ui.png)
+![Chat Interface](media/demo-chat.png)
 
 ---
 

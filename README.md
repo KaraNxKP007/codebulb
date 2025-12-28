@@ -7,7 +7,8 @@ CodeBulb is a powerful VS Code extension that turns your editor into an AI-power
 ## 🎥 Demo
 See CodeBulb in action:
 
-[![Watch on YouTube](https://img.shields.io/badge/Watch_Demo-YouTube-red?style=for-the-badge&logo=youtube)](YOUR_YOUTUBE_VIDEO_LINK_HERE)
+[![Watch on YouTube](https://img.shields.io/badge/Watch_Demo-YouTube-red?style=for-the-badge&logo=youtube)]
+(https://www.youtube.com/watch?v=phKzqYXWrOI)
 
 *(Click the button above to watch the full tutorial)*
 
